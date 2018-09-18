@@ -9,27 +9,24 @@ namespace ConsoleApp6
     class Program
     {
 
-        interface IIfc1
-        {
-            void PrintOut(string s);
-        }
+        interface IDataRetrieve { int GetData(); }      // Declare interface.
+        interface IDataStore { void SetData(int x); }   // Declare interface.
 
 
-        class MyClass : IIfc1
+        class MyData : IDataRetrieve, IDataStore // Declare class.
         {
-            public void PrintOut(string s)
-            {
-                Console.WriteLine("Calling through: {0}", s);
-            }
+            int Mem1; // Declare field.
+            public int GetData() { return Mem1; }
+            public void SetData(int x) { Mem1 = x; }
         }
+
 
         static void Main()
         {
-            MyClass mc = new MyClass(); // Create class object.
-            mc.PrintOut("object"); // Call class object implementation method.
+            MyData data = new MyData();
+            data.SetData(5);
+            Console.WriteLine("Value = {0}", data.GetData());
 
-            IIfc1 ifc = mc as IIfc1; // Acts like cast: (IIfc1)mc.
-            ifc.PrintOut("interface"); // Call interface method.
         }
 
     }
