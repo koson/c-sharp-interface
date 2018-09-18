@@ -30,6 +30,8 @@ namespace ConsoleApp6
             foreach (var m in mc) // Print them out.
                 Console.Write("{0} ", m.TheValue);
             Console.WriteLine(Environment.NewLine + "------------------");
+            Array.Sort(mc);
+            
         }
     }
 }
