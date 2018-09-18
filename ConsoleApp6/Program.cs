@@ -17,6 +17,7 @@ namespace ConsoleApp6
         {
             void PrintOut(string s);
         }
+
         class MyClass : IIfc1, IIfc2 // Declare class.
         {
             public void PrintOut(string s)
