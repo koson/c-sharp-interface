@@ -8,44 +8,28 @@ namespace ConsoleApp6
 {
     class Program
     {
-        class MyClass : IComparable
-        {
-            public int TheValue;
 
-            public int CompareTo(object obj)
+        interface IIfc1
+        {
+            void PrintOut(string s);
+        }
+
+
+        class MyClass : IIfc1
+        {
+            public void PrintOut(string s)
             {
-                MyClass mc = (MyClass)obj;
-                if (this.TheValue < mc.TheValue) return -1;
-                if (this.TheValue > mc.TheValue) return 1;
-                return 0;
+                Console.WriteLine("Calling through: {0}", s);
             }
         }
 
         static void Main()
         {
-            MyClass[] mc = new MyClass[5];
-            for (int i = 0; i < 5; i++)
-            {
-                mc[i] = new MyClass();
-            }
+            MyClass mc = new MyClass(); // Create class object.
+            mc.PrintOut("object"); // Call class object implementation method.
 
-            mc[0].TheValue = 20;
-            mc[1].TheValue = 4;
-            mc[2].TheValue = 16;
-            mc[3].TheValue = 9;
-            mc[4].TheValue = 2;
-
-            Console.WriteLine("Before");
-            foreach (var m in mc) // Print them out.
-                Console.Write("{0} ", m.TheValue);
-            Console.WriteLine(Environment.NewLine + "------------------");
-
-            Array.Sort(mc);
-
-            Console.WriteLine("After");
-            foreach (var m in mc) // Print them out.
-                Console.Write("{0} ", m.TheValue);
-            Console.WriteLine(Environment.NewLine + "------------------");
+            IIfc1 ifc = (IIfc1)mc; // Cast class object ref to interface ref.
+            ifc.PrintOut("interface"); // Call interface method.
         }
 
     }
