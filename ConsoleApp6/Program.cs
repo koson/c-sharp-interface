@@ -9,23 +9,29 @@ namespace ConsoleApp6
     class Program
     {
 
-        interface IDataRetrieve { int GetData(); }      // Declare interface.
-        interface IDataStore { void SetData(int x); }   // Declare interface.
-
-
-        class MyData : IDataRetrieve, IDataStore // Declare class.
+        interface IIfc1
         {
-            int Mem1; // Declare field.
-            public int GetData() { return Mem1; }
-            public void SetData(int x) { Mem1 = x; }
+            void PrintOut(string s);
+        }
+        interface IIfc2
+        {
+            void PrintOut(string t);
+        }
+
+
+        class MyClass : IIfc1, IIfc2 // Implement both interfaces.
+        {
+            public void PrintOut(string s) // Single implementation for both
+            {
+                Console.WriteLine("Calling through: {0}", s);
+            }
         }
 
 
         static void Main()
         {
-            MyData data = new MyData();
-            data.SetData(5);
-            Console.WriteLine("Value = {0}", data.GetData());
+            MyClass mc = new MyClass();
+            mc.PrintOut("object");
 
         }
 
