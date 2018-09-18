@@ -8,23 +8,28 @@ namespace ConsoleApp6
 {
     class Program
     {
-
+        class MyClass
+        {
+            public int TheValue;
+        }
 
         static void Main()
         {
-            var myInt = new[] { 20, 4, 16, 9, 2 };  // Create an array of ints.
+            MyClass[] mc = new MyClass[5];
+            for (int i = 0; i < 5; i++)
+            {
+                mc[i] = new MyClass();
+            }
 
-            Console.WriteLine("Before sort");
-            foreach (var i in myInt)                // Print them out (before sort).
-                Console.Write("{0} ", i);
-            Console.WriteLine(Environment.NewLine + "----------------");
+            mc[0].TheValue = 20;
+            mc[1].TheValue = 4;
+            mc[2].TheValue = 16;
+            mc[3].TheValue = 9;
+            mc[4].TheValue = 2;
 
-            Array.Sort(myInt);                      // Sort elements by magnitude.
-
-            Console.WriteLine("After sorted");
-            foreach (var i in myInt)                // Print them out (after sorted).
-                Console.Write("{0} ", i);
-            Console.WriteLine(Environment.NewLine + "----------------");
+            foreach (var m in mc) // Print them out.
+                Console.Write("{0} ", m.TheValue);
+            Console.WriteLine(Environment.NewLine + "------------------");
         }
     }
 }
