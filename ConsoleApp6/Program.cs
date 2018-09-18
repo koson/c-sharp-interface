@@ -28,7 +28,7 @@ namespace ConsoleApp6
             MyClass mc = new MyClass(); // Create class object.
             mc.PrintOut("object"); // Call class object implementation method.
 
-            IIfc1 ifc = (IIfc1)mc; // Cast class object ref to interface ref.
+            IIfc1 ifc = mc as IIfc1; // Acts like cast: (IIfc1)mc.
             ifc.PrintOut("interface"); // Call interface method.
         }
 
