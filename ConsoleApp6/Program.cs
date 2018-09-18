@@ -8,9 +8,17 @@ namespace ConsoleApp6
 {
     class Program
     {
-        class MyClass
+        class MyClass : IComparable
         {
             public int TheValue;
+
+            public int CompareTo(object obj)
+            {
+                MyClass mc = (MyClass)obj;
+                if (this.TheValue < mc.TheValue) return -1;
+                if (this.TheValue > mc.TheValue) return 1;
+                return 0;
+            }
         }
 
         static void Main()
@@ -27,12 +35,20 @@ namespace ConsoleApp6
             mc[3].TheValue = 9;
             mc[4].TheValue = 2;
 
+            Console.WriteLine("Before");
             foreach (var m in mc) // Print them out.
                 Console.Write("{0} ", m.TheValue);
             Console.WriteLine(Environment.NewLine + "------------------");
+
             Array.Sort(mc);
-            
+
+            Console.WriteLine("After");
+            foreach (var m in mc) // Print them out.
+                Console.Write("{0} ", m.TheValue);
+            Console.WriteLine(Environment.NewLine + "------------------");
         }
+
     }
+
 }
 
